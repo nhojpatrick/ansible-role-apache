@@ -27,6 +27,12 @@
   </Directory>
 {% endif %}
 
+{% if vhost.redirectmatches is defined %}
+  {{ "Setup RedirectMatch" | comment }}
+{% for redirectmatch in vhost.redirectmatches %}
+  RedirectMatch "{{ redirectmatch.from }}" "{{ redirectmatch.to }}"
+{% endfor %}{% endif %}
+
 {% if vhost.proxy is defined %}
   {{ "Setup Proxies" | comment }}
 {% if vhost.proxy.members is defined %}
@@ -91,6 +97,12 @@
 {% endif %}
   </Directory>
 {% endif %}
+
+{% if vhost.redirectmatches is defined %}
+  {{ "Setup RedirectMatch" | comment }}
+{% for redirectmatch in vhost.redirectmatches %}
+  RedirectMatch "{{ redirectmatch.from }}" "{{ redirectmatch.to }}"
+{% endfor %}{% endif %}
 
 {% if vhost.proxy is defined %}
   {{ "Setup Proxies" | comment }}
